@@ -13,13 +13,13 @@ beware my power…_GREEN LANTERN'S LIGHT_!”
 
 >Tradução literal da versão inglesa:
 
-*** "No dia mais claro, na noite mais  ~~escura~~ densa,
+"No dia mais claro, na noite mais  ~~escura~~ densa,
 
 nenhum mal escapará a minha visão!
 
 Que aqueles que adoram o poder do mal,
 
-temam o meu poder ...  <strong>A LUZ DO LANTERNA VERDE!<strong>" ***
+temam o meu poder ...  <strong>A LUZ DO LANTERNA VERDE!<strong>"
 
 ### Existem no Brasil varias versões deste juramento:
 
