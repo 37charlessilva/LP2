@@ -17,7 +17,8 @@ class Poligono {
         this.h = h;
         this.c = c;
     }
+    
     void print() {
-        System.out.format("Poligono de tamanho (%d, %d) na posicao (%d,%d) com %d lado(s).\n", this.w, this.h, this.x, this.y, this.c);
+        System.out.format("Poligono de tamanho (%d, %d) na posicao (%d, %d) com %d lado(s).\n", this.w, this.h, this.x, this.y, this.c);
     } 
 }
