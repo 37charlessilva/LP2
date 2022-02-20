@@ -31,7 +31,7 @@ class Rect{
     }
 
     int area(){
-        return this.x * this.w;
+        return this.h * this.w;
     }
 
     void drag (int dx, int dy){
