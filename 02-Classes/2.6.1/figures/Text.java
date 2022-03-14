@@ -17,6 +17,10 @@ public class Text extends Figure{
         this.cb = cb;
     }
 
+    public void print(){
+        System.out.format("Texto na posicao (%d, %d) com a menssagem (%s).\n", this.x, this.y, this.m);
+    }
+    
     public void paint (Graphics g){
         Graphics2D g2d = (Graphics2D) g;
         

@@ -21,7 +21,7 @@ public class Arc extends Figure{
 
     public void print(){
         System.out.format("Arco de tamanho (%d, %d) na posicao (%d, %d) com agulo inicial e final(%d, %d).\n",
-            this.w, this.h, this.x, this.y,this.sa, this.aa);
+            this.w, this.h, this.x, this.y, this.sa, this.aa);
     }
     
     public void paint (Graphics g) {
