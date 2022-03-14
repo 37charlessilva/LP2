@@ -3,24 +3,12 @@ package figures;
 import java.awt.*;
 
 public class Rect extends Figure{
-    private int x, y;
-    private int w, h;
-    private int cr, cg, cb, fr, fg, fb;
 
-    public Rect (int x, int y, int w, int h, int cr, int cg, int cb, int fr, int fg, int fb){
-        this.x = x;
-        this.y = y;
-        this.w = w;
-        this.h = h;
-        this.cr = cr;
-        this.cg = cg;
-        this.cb = cb;
-        this.fr = fr;
-        this.fg = fg;
-        this.fb = fb;
+    public Rect(int x, int y, int w, int h, int cr, int cg, int cb, int fr, int fg, int fb){
+        super(x, y, w, h, cr, cg, cb, fr, fg, fb);
     }
 
-    private void print(){
+    public void print(){
         System.out.format("Retangulo de tamanho (%d, %d) na posicao (%d, %d).\n",
             this.w, this.h, this.x, this.y);
     }

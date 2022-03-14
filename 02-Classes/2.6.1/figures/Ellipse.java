@@ -5,12 +5,24 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Ellipse2D.Double;
 
 public class Ellipse extends Figure{
+    private int x, y;
+    private int w, h;
+    private int cr, cg, cb, fr, fg, fb;
 
-    public Ellipse(int x, int y, int w, int h, int cr, int cg, int cb, int fr, int fg, int fb){
-        super(x, y, w, h, cr, cg, cb, fr, fg, fb);
+    public Ellipse (int x, int y, int w, int h, int cr, int cg, int cb, int fr, int fg, int fb){
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.cr = cr;
+        this.cg = cg;
+        this.cb = cb;
+        this.fr = fr;
+        this.fg = fg;
+        this.fb = fb;
     }
 
-    public void print(){
+    private void print(){
         System.out.format("Elipse de tamanho (%d, %d) na posicao (%d, %d).\n",
             this.w, this.h, this.x, this.y);
     }
