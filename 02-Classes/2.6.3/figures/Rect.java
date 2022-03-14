@@ -3,9 +3,16 @@ package figures;
 import java.awt.*;
 
 public class Rect extends Figure{
-
+    private int w, h;
+    private int fr, fg, fb;
+    
     public Rect(int x, int y, int w, int h, int cr, int cg, int cb, int fr, int fg, int fb){
-        super(x, y, w, h, cr, cg, cb, fr, fg, fb);
+        super(x, y, cr, cg, cb);
+        this.w = w;
+        this.h = h;
+        this.fr = fr;
+        this.fg = fg;
+        this.fb = fb;
     }
 
     public void print(){

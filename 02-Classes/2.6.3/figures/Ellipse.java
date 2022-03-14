@@ -5,9 +5,17 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Ellipse2D.Double;
 
 public class Ellipse extends Figure{
+    private int w, h;
+    private int fr, fg, fb;
 
     public Ellipse(int x, int y, int w, int h, int cr, int cg, int cb, int fr, int fg, int fb){
-        super(x, y, w, h, cr, cg, cb, fr, fg, fb);
+        
+        super(x, y, cr, cg, cb);
+        this.w = w;
+        this.h = h;
+        this.fr = fr;
+        this.fg = fg;
+        this.fb = fb;       
     }
 
     public void print(){

@@ -52,6 +52,9 @@ class ListFrame extends JFrame{
                     else if(evt.getKeyChar() == 'a'){
                         figs.add(new Arc(x, y, w, h, sa, aa, cr, cg, cb, fr, fg, fb));
                     }
+                    else if(evt.getKeyChar() == 't'){
+                        figs.add(new Text("Hello", x, y, cr, cg, cb));
+                    }
                     repaint();
                 }
             }
