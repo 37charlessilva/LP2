@@ -14,4 +14,7 @@ public abstract class Figure{
         this.cb = cb;
     }
     public abstract void paint(Graphics g);
+    public abstract int retun_x();
+    public abstract int retun_y();
+    public abstract int colision(int mx, int my);
 }

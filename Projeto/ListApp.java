@@ -15,6 +15,7 @@ class ListApp{
 
 class ListFrame extends JFrame{
     ArrayList<Figure> figs = new ArrayList<Figure>();
+    Figure focus = null;
     Random rand = new Random();
 
     int x, y;
@@ -28,6 +29,19 @@ class ListFrame extends JFrame{
             }
         );
         
+        this.addMouseListener(new MouseAdapter(){
+            public void mousePressed(MouseEvent evt){
+                focus = null;
+                for(Figure fig: figs) {
+                    if(fig.colision(evt.getX(), evt.getY()) == 1){
+                        focus = fig;
+                        System.out.println("Foi");
+                    }
+                }
+            }
+        });
+
+
         this.addMouseMotionListener(new MouseMotionAdapter(){
             public void mouseMoved(MouseEvent evt){
                 x = evt.getX();
@@ -38,16 +52,16 @@ class ListFrame extends JFrame{
         this.addKeyListener(
             new KeyAdapter(){
                 public void keyPressed (KeyEvent evt){
-                    int w = rand.nextInt(100);
-                    int h = rand.nextInt(100);
+                    int w = 75;
+                    int h = 75;
                     int sa = rand.nextInt(50, 360);
                     int aa = rand.nextInt(50, 360);
-                    int cr = rand.nextInt(255);
-                    int cg = rand.nextInt(255);
-                    int cb = rand.nextInt(255);
-                    int fr = rand.nextInt(255);
-                    int fg = rand.nextInt(255);
-                    int fb = rand.nextInt(255);
+                    int cr = 0;
+                    int cg = 0;
+                    int cb = 0;
+                    int fr = 0;
+                    int fg = 0;
+                    int fb = 0;
 
                     if(evt.getKeyChar() == 'r'){
                         Rect r = new Rect(x, y, w, h, cr, cg, cb, fr, fg, fb);
@@ -61,6 +75,9 @@ class ListFrame extends JFrame{
                     }
                     else if(evt.getKeyChar() == 't'){
                         figs.add(new Text("Hello", x, y, cr, cg, cb));
+                    }
+                    else if(evt.getKeyCode() == KeyEvent.VK_DELETE){
+                        figs.remove(focus);
                     }
                     repaint();
                 }

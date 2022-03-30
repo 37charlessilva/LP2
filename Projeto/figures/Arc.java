@@ -19,6 +19,21 @@ public class Arc extends Figure{
         this.fb = fb;
     }
 
+    public int retun_x() {
+        return this.x;
+    }
+    public int retun_y() {
+        return this.y;
+    }
+    public int colision(int mx, int my){
+        if(mx >= this.x && mx <= (this.x + this.w) && my >= this.x && my <= (this.y + this.h))
+        {
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
     public void print(){
         System.out.format("Arco de tamanho (%d, %d) na posicao (%d, %d) com agulo inicial e final(%d, %d).\n",
             this.w, this.h, this.x, this.y, this.sa, this.aa);
