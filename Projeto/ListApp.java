@@ -35,12 +35,12 @@ class ListFrame extends JFrame{
                 for(Figure fig: figs) {
                     if(fig.colision(evt.getX(), evt.getY()) == 1){
                         focus = fig;
-                        System.out.println("Foi");
+                        // Fazer outra forma de marcar
                     }
                 }
+                repaint();
             }
         });
-
 
         this.addMouseMotionListener(new MouseMotionAdapter(){
             public void mouseMoved(MouseEvent evt){
@@ -54,8 +54,8 @@ class ListFrame extends JFrame{
                 public void keyPressed (KeyEvent evt){
                     int w = 75;
                     int h = 75;
-                    int sa = rand.nextInt(50, 360);
-                    int aa = rand.nextInt(50, 360);
+                    int sa = -45;
+                    int aa = 180;
                     int cr = 0;
                     int cg = 0;
                     int cb = 0;

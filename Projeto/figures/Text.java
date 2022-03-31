@@ -6,6 +6,7 @@ import java.awt.geom.AffineTransform;
 
 public class Text extends Figure{
     protected String m;
+    private int c;
     protected int textwidth, textheight;
 
     public Text(String m, int x, int y, int cr, int cg, int cb)
@@ -27,23 +28,32 @@ public class Text extends Figure{
     }
 
     public int colision(int mx, int my){
-        if(mx >= this.x && mx <= (this.x + this.textwidth))
+        
+        if(mx >= this.x && mx <= (this.x + textwidth) && my <= this.y && my >= (this.y - textheight))
         {
-            return 1;
+            return c = 1;
         }
         else{
-            return 0;
+            return c = 0;
         }
     }
 
     public void paint (Graphics g){
         Graphics2D g2d = (Graphics2D) g;
-        Font font = new Font("Arial", Font.PLAIN, 12);
+        Font font = new Font("Arial", Font.PLAIN, 20);
         FontRenderContext frc = new FontRenderContext(new AffineTransform(), true, true);
 
+        
+        g.setColor(new Color(this.cr, this.cg, this.cb));
+        g.setFont(font);
         textwidth = (int)(font.getStringBounds(m, frc).getWidth());
         textheight = (int)(font.getStringBounds(m, frc).getHeight());
-        g.setColor(new Color(this.cr, this.cg, this.cb));
         g2d.drawString(this.m, this.x, this.y);
+
+        if(c == 1)
+        {
+            g.setColor(Color.red);
+            g2d.drawRect(this.x ,this.y - textheight, textwidth, textheight);
+        }
     }
 }

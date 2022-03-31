@@ -4,6 +4,7 @@ import java.awt.*;
 
 public class Arc extends Figure{
     private int sa, aa;
+    private int c;
     private int w, h;
     private int fr, fg, fb;
 
@@ -26,12 +27,12 @@ public class Arc extends Figure{
         return this.y;
     }
     public int colision(int mx, int my){
-        if(mx >= this.x && mx <= (this.x + this.w) && my >= this.x && my <= (this.y + this.h))
+        if(mx >= this.x && mx <= (this.x + this.w) && my >= this.y && my <= (this.y + this.h))
         {
-            return 1;
+            return c = 1;
         }
         else{
-            return 0;
+            return c = 0;
         }
     }
     public void print(){
@@ -41,11 +42,16 @@ public class Arc extends Figure{
     
     public void paint (Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
+        
+        if(c == 1)
+        {
+            g.setColor(Color.red);
+            g2d.drawRect(this.x ,this.y, this.w, this.h);
+        }
 
         g.setColor(new Color(this.cr, this.cg, this.cb));
         g2d.drawArc(this.x, this.y, this.w, this.h, this.sa, this.aa);
-        
-        g.setColor(new Color(this.fr, this.fg, this.fb));
-        g2d.fillArc(this.x, this.y, this.w, this.h, this.sa, this.aa);
+        //g.setColor(new Color(this.fr, this.fg, this.fb));
+        //g2d.fillArc(this.x, this.y, this.w, this.h, this.sa, this.aa);
     }
 }
