@@ -3,7 +3,7 @@ package figures;
 import java.awt.Graphics;
 
 public abstract class Figure{
-    protected int x, y;
+    public int x, y, c = 1;
     protected int cr, cg, cb;
 
     public Figure(int x, int y, int cr, int cg, int cb){
@@ -14,7 +14,6 @@ public abstract class Figure{
         this.cb = cb;
     }
     public abstract void paint(Graphics g);
-    public abstract int retun_x();
-    public abstract int retun_y();
     public abstract int colision(int mx, int my);
+    public abstract void rect_paint(Graphics g);
 }

@@ -6,7 +6,6 @@ import java.awt.geom.AffineTransform;
 
 public class Text extends Figure{
     protected String m;
-    private int c;
     protected int textwidth, textheight;
 
     public Text(String m, int x, int y, int cr, int cg, int cb)
@@ -19,14 +18,6 @@ public class Text extends Figure{
         System.out.format("Texto na posicao (%d, %d) com a menssagem (%s).\n", this.x, this.y, this.m);
     }
     
-    public int retun_x() {
-        return this.x;
-    }
-
-    public int retun_y() {
-        return this.y;
-    }
-
     public int colision(int mx, int my){
         
         if(mx >= this.x && mx <= (this.x + textwidth) && my <= this.y && my >= (this.y - textheight))
@@ -36,6 +27,12 @@ public class Text extends Figure{
         else{
             return c = 0;
         }
+    }
+
+    public void rect_paint(Graphics g){
+        Graphics2D g2d = (Graphics2D) g;
+        g.setColor(Color.red);
+        g2d.drawRect(this.x ,this.y - textheight, textwidth, textheight);
     }
 
     public void paint (Graphics g){
@@ -52,8 +49,9 @@ public class Text extends Figure{
 
         if(c == 1)
         {
-            g.setColor(Color.red);
-            g2d.drawRect(this.x ,this.y - textheight, textwidth, textheight);
+            rect_paint(g);
         }
+
+        c = 0;
     }
 }

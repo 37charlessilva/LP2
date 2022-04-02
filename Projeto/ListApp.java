@@ -16,6 +16,7 @@ class ListApp{
 class ListFrame extends JFrame{
     ArrayList<Figure> figs = new ArrayList<Figure>();
     Figure focus = null;
+    Figure rect_focus = null;
     Random rand = new Random();
 
     int x, y;
@@ -35,8 +36,12 @@ class ListFrame extends JFrame{
                 for(Figure fig: figs) {
                     if(fig.colision(evt.getX(), evt.getY()) == 1){
                         focus = fig;
-                        // Fazer outra forma de marcar
                     }
+                }
+                if(focus != null)
+                {
+                    figs.add(focus);
+                    figs.remove(focus);
                 }
                 repaint();
             }
@@ -64,20 +69,24 @@ class ListFrame extends JFrame{
                     int fb = 0;
 
                     if(evt.getKeyChar() == 'r'){
-                        Rect r = new Rect(x, y, w, h, cr, cg, cb, fr, fg, fb);
-                        figs.add(r);
+                        focus = new Rect(x, y, w, h, cr, cg, cb, fr, fg, fb);
+                        figs.add(focus);
                     }
                     else if(evt.getKeyChar() == 'e'){
-                        figs.add(new Ellipse(x, y, w, h, cr, cg, cb, fr, fg, fb));
+                        focus = (new Ellipse(x, y, w, h, cr, cg, cb, fr, fg, fb));
+                        figs.add(focus);
                     }
                     else if(evt.getKeyChar() == 'a'){
-                        figs.add(new Arc(x, y, w, h, sa, aa, cr, cg, cb, fr, fg, fb));
+                        focus = (new Arc(x, y, w, h, sa, aa, cr, cg, cb, fr, fg, fb));
+                        figs.add(focus);
                     }
                     else if(evt.getKeyChar() == 't'){
-                        figs.add(new Text("Hello", x, y, cr, cg, cb));
+                        focus = (new Text("Hello", x, y, 255, 200, 100));
+                        figs.add(focus);
                     }
                     else if(evt.getKeyCode() == KeyEvent.VK_DELETE){
                         figs.remove(focus);
+                        focus = null;
                     }
                     repaint();
                 }
@@ -92,6 +101,11 @@ class ListFrame extends JFrame{
         super.paint(g);
         for (Figure fig: this.figs){
             fig.paint(g);
+        }
+        
+        if(focus != null)
+        {
+            focus.rect_paint(g);
         }
     }
 }
