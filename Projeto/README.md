@@ -1,6 +1,6 @@
-#Projeto de editor gráfico 
+# Projeto de editor gráfico 
 
-##Comandos
+## Comandos
 
   * e = cria uma elipse
   * a = cria um arco
