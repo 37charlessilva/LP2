@@ -2,10 +2,10 @@
 
 ## Comandos
 
-  * e = cria uma elipse
-  * a = cria um arco
-  * t = cria um texto
-  * r = ia um retangulod
-  * Clicar na figura = matem ela em foco
+  * e = Cria uma elipse
+  * a = Cria um arco
+  * t = Cria um texto
+  * r = Cia um retangulo
+  * Clicar na figura = Matem ela em foco
   * Delete = Deleta a figura
  
