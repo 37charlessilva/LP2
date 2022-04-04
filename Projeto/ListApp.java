@@ -2,7 +2,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Random;
 
 import figures.*;
 
@@ -16,10 +15,8 @@ class ListApp{
 class ListFrame extends JFrame{
     ArrayList<Figure> figs = new ArrayList<Figure>();
     Figure focus = null;
-    Figure rect_focus = null;
-    Random rand = new Random();
-
-    int x, y;
+    int x, y, a, b;
+    Color cor_fundo = null, cor_contorno = Color.black;
 
     ListFrame(){
         this.addWindowListener(
@@ -33,13 +30,17 @@ class ListFrame extends JFrame{
         this.addMouseListener(new MouseAdapter(){
             public void mousePressed(MouseEvent evt){
                 focus = null;
+                // Colar em foco
                 for(Figure fig: figs) {
                     if(fig.colision(evt.getX(), evt.getY()) == 1){
                         focus = fig;
+                        a = focus.x - evt.getX();
+                        b = focus.y  - evt.getY();
                     }
                 }
                 if(focus != null)
                 {
+                    // z-order
                     figs.add(focus);
                     figs.remove(focus);
                 }
@@ -49,8 +50,18 @@ class ListFrame extends JFrame{
 
         this.addMouseMotionListener(new MouseMotionAdapter(){
             public void mouseMoved(MouseEvent evt){
+                // Pegar coordenadas do mouse quando ele ta na tela
                 x = evt.getX();
                 y = evt.getY();
+            }
+
+            public void mouseDragged(MouseEvent evt) {
+                if (focus != null)
+                {
+                    focus.x = evt.getX() + a;
+                    focus.y = evt.getY() + b;
+                    repaint();
+                }
             }
         });
 
@@ -61,33 +72,115 @@ class ListFrame extends JFrame{
                     int h = 75;
                     int sa = -45;
                     int aa = 180;
-                    int cr = 0;
-                    int cg = 0;
-                    int cb = 0;
-                    int fr = 0;
-                    int fg = 0;
-                    int fb = 0;
 
+                    // Criar figuras
                     if(evt.getKeyChar() == 'r'){
-                        focus = new Rect(x, y, w, h, cr, cg, cb, fr, fg, fb);
+                        focus = new Rect(x, y, w, h, cor_fundo, cor_contorno);
                         figs.add(focus);
                     }
                     else if(evt.getKeyChar() == 'e'){
-                        focus = (new Ellipse(x, y, w, h, cr, cg, cb, fr, fg, fb));
+                        focus = (new Ellipse(x, y, w, h, cor_fundo, cor_contorno));
                         figs.add(focus);
                     }
                     else if(evt.getKeyChar() == 'a'){
-                        focus = (new Arc(x, y, w, h, sa, aa, cr, cg, cb, fr, fg, fb));
+                        focus = (new Arc(x, y, w, h, sa, aa, cor_fundo, cor_contorno));
                         figs.add(focus);
                     }
                     else if(evt.getKeyChar() == 't'){
-                        focus = (new Text("Hello", x, y, 255, 200, 100));
+                        focus = (new Text("Hello", x, y, cor_fundo, cor_contorno));
                         figs.add(focus);
                     }
+
+                     // Remover figura
                     else if(evt.getKeyCode() == KeyEvent.VK_DELETE){
                         figs.remove(focus);
                         focus = null;
                     }
+
+                    // Mover figuras
+                    else if(focus != null){
+
+                        if(evt.getKeyCode() == KeyEvent.VK_RIGHT){
+                            focus.x += 2;
+                        }
+                        else if(evt.getKeyCode() == KeyEvent.VK_LEFT){
+                            
+                            focus.x -= 2;
+                        }
+                        else if(evt.getKeyCode() == KeyEvent.VK_UP){
+                            
+                            focus.y -= 2;
+                        }
+                        else if(evt.getKeyCode() == KeyEvent.VK_DOWN){
+                            
+                            focus.y += 2;
+                        }
+
+                        // Cor de fundo
+                        else if(evt.getKeyCode() == KeyEvent.VK_NUMPAD0){
+                            focus.cor_fundo = null;
+                        }
+                        else if(evt.getKeyCode() == KeyEvent.VK_NUMPAD1){
+                            focus.cor_fundo = Color.black;
+                        }
+                        else if(evt.getKeyCode() == KeyEvent.VK_NUMPAD2){
+                            focus.cor_fundo = Color.blue;
+                        }
+                        else if(evt.getKeyCode() == KeyEvent.VK_NUMPAD3){
+                            focus.cor_fundo = Color.CYAN;
+                        }
+                        else if(evt.getKeyCode() == KeyEvent.VK_NUMPAD4){
+                            focus.cor_fundo = Color.DARK_GRAY;
+                        }
+                        else if(evt.getKeyCode() == KeyEvent.VK_NUMPAD5){
+                            focus.cor_fundo = Color.GRAY;
+                        }
+                        else if(evt.getKeyCode() == KeyEvent.VK_NUMPAD6){
+                            focus.cor_fundo = Color.GREEN;
+                        }
+                        else if(evt.getKeyCode() == KeyEvent.VK_NUMPAD7){
+                            focus.cor_fundo = Color.ORANGE;
+                        }
+                        else if(evt.getKeyCode() == KeyEvent.VK_NUMPAD8){
+                            focus.cor_fundo = Color.PINK;
+                        }
+                        else if(evt.getKeyCode() == KeyEvent.VK_NUMPAD9){
+                            focus.cor_fundo = Color.YELLOW;
+                        }
+
+                        // Cor de contorno
+                        else if(evt.getKeyCode() == KeyEvent.VK_0){
+                            focus.cor_contorno = Color.black;
+                        }
+                        else if(evt.getKeyCode() == KeyEvent.VK_1){
+                            focus.cor_contorno = Color.white;
+                        }
+                        else if(evt.getKeyCode() == KeyEvent.VK_2){
+                            focus.cor_contorno = Color.blue;
+                        }
+                        else if(evt.getKeyCode() == KeyEvent.VK_3){
+                            focus.cor_contorno = Color.CYAN;
+                        }
+                        else if(evt.getKeyCode() == KeyEvent.VK_4){
+                            focus.cor_contorno = Color.DARK_GRAY;
+                        }
+                        else if(evt.getKeyCode() == KeyEvent.VK_5){
+                            focus.cor_contorno = Color.GRAY;
+                        }
+                        else if(evt.getKeyCode() == KeyEvent.VK_6){
+                            focus.cor_contorno = Color.GREEN;
+                        }
+                        else if(evt.getKeyCode() == KeyEvent.VK_7){
+                            focus.cor_contorno = Color.ORANGE;
+                        }
+                        else if(evt.getKeyCode() == KeyEvent.VK_8){
+                            focus.cor_contorno = Color.PINK;
+                        }
+                        else if(evt.getKeyCode() == KeyEvent.VK_9){
+                            focus.cor_contorno = Color.YELLOW;
+                        }
+                    }
+
                     repaint();
                 }
             }
@@ -105,6 +198,7 @@ class ListFrame extends JFrame{
         
         if(focus != null)
         {
+            // Desenhar retangulo na fig em foco
             focus.rect_paint(g);
         }
     }

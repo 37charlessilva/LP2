@@ -6,25 +6,22 @@ import java.awt.geom.Ellipse2D.Double;
 
 public class Ellipse extends Figure{
     private int w, h;
-    private int fr, fg, fb;
 
-    public Ellipse(int x, int y, int w, int h, int cr, int cg, int cb, int fr, int fg, int fb){
+    public Ellipse(int x, int y, int w, int h, Color cor_fundo, Color cor_contorno){
         
-        super(x, y, cr, cg, cb);
+        super(x, y, cor_fundo, cor_contorno);
         this.w = w;
-        this.h = h;
-        this.fr = fr;
-        this.fg = fg;
-        this.fb = fb;       
+        this.h = h;     
     }
 
     public int colision(int mx, int my){
         if(mx >= this.x && mx <= (this.x + this.w) && my >= this.y && my <= (this.y + this.h))
         {
-            return c = 1;
+            return 1;
         }
         else{
-            return c = 0;
+            
+            return 0;
         }
     }
     
@@ -33,6 +30,11 @@ public class Ellipse extends Figure{
             this.w, this.h, this.x, this.y);
     }
 
+    public void drag(int dx, int dy){
+        this.x += dx;
+        this.y += dx;
+    }
+    
     public void rect_paint(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
         g.setColor(Color.red);
@@ -47,12 +49,15 @@ public class Ellipse extends Figure{
             rect_paint(g);
         }
 
-        g.setColor(new Color(this.cr, this.cg, this.cb));
+        if(cor_fundo != null)
+        {
+            g.setColor(this.cor_fundo);
+            g2d.fill(new Ellipse2D.Double(this.x, this.y, this.w, this.h));
+        } 
+
+        g.setColor(this.cor_contorno);
         g2d.draw(new Ellipse2D.Double(this.x, this.y, this.w, this.h));
 
         c = 0;
-        
-        //g.setColor(new Color(this.fr, this.fg, this.fb));
-        //g2d.fill(new Ellipse2D.Double(this.x, this.y, this.w, this.h));
     }
 }

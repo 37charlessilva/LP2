@@ -4,15 +4,12 @@ import java.awt.*;
 
 public class Rect extends Figure{
     private int w, h;
-    private int fr, fg, fb;
     
-    public Rect(int x, int y, int w, int h, int cr, int cg, int cb, int fr, int fg, int fb){
-        super(x, y, cr, cg, cb);
+    public Rect(int x, int y, int w, int h, Color cor_fundo, Color cor_contorno){
+        
+        super(x, y, cor_fundo, cor_contorno);
         this.w = w;
         this.h = h;
-        this.fr = fr;
-        this.fg = fg;
-        this.fb = fb;
     }
 
     public int colision(int mx, int my){
@@ -31,6 +28,11 @@ public class Rect extends Figure{
             this.w, this.h, this.x, this.y);
     }
 
+    public void drag(int dx, int dy){
+        this.x += dx;
+        this.y += dx;
+    }
+    
     public void rect_paint(Graphics g)
     {
         Graphics2D g2d = (Graphics2D) g;
@@ -45,11 +47,15 @@ public class Rect extends Figure{
         {
             rect_paint(g);
         }
+        
+        if(cor_fundo != null)
+        {
+            g.setColor(this.cor_fundo);
+            g2d.fillRect(this.x, this.y, this.w, this.h);
+        }
 
-        g.setColor(new Color(this.cr, this.cg, this.cb));
-        g2d.drawRect(this.x,this.y, this.w, this.h);
-        g.setColor(new Color(this.fr, this.fg, this.fb));
-        g2d.fillRect(this.x,this.y, this.w,this.h);
+        g.setColor(this.cor_contorno);
+        g2d.drawRect(this.x, this.y, this.w, this.h);
 
         c = 0;
     }

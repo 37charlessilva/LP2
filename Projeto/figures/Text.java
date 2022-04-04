@@ -8,9 +8,9 @@ public class Text extends Figure{
     protected String m;
     protected int textwidth, textheight;
 
-    public Text(String m, int x, int y, int cr, int cg, int cb)
+    public Text(String m, int x, int y,Color cor_fundo, Color cor_contorno)
     {
-        super(x, y, cr, cg, cb);
+        super(x, y, cor_fundo, cor_contorno);
         this.m = m;
     }
 
@@ -18,14 +18,20 @@ public class Text extends Figure{
         System.out.format("Texto na posicao (%d, %d) com a menssagem (%s).\n", this.x, this.y, this.m);
     }
     
+    public void drag(int dx, int dy){
+        this.x += dx;
+        this.y += dx;
+    }
+    
     public int colision(int mx, int my){
         
         if(mx >= this.x && mx <= (this.x + textwidth) && my <= this.y && my >= (this.y - textheight))
         {
-            return c = 1;
+            return 1;
         }
         else{
-            return c = 0;
+            
+            return 0;
         }
     }
 
@@ -41,7 +47,7 @@ public class Text extends Figure{
         FontRenderContext frc = new FontRenderContext(new AffineTransform(), true, true);
 
         
-        g.setColor(new Color(this.cr, this.cg, this.cb));
+        g.setColor(cor_fundo);
         g.setFont(font);
         textwidth = (int)(font.getStringBounds(m, frc).getWidth());
         textheight = (int)(font.getStringBounds(m, frc).getHeight());
