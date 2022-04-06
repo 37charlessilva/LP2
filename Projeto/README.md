@@ -4,7 +4,7 @@
 
   * Click com o mouse na figura para deixa-la em foco
   * f = para alternar de foco
-  * click na parte superior direita e mecher no mouse altera o tamanho e a largura da figura
+  * Click na parte superior direita e mecher no mouse altera o tamanho e a largura da figura
    
   ### Criar e deletar figuras
 
