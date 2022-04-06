@@ -15,7 +15,7 @@ class ListApp{
 class ListFrame extends JFrame{
     ArrayList<Figure> figs = new ArrayList<Figure>();
     Figure focus = null;
-    int x, y, x1, y1, a, b;
+    int x, y, x1, y1, a, b, w, h, c;
     Color cor_fundo = null, cor_contorno = Color.black;
 
     ListFrame(){
@@ -38,6 +38,8 @@ class ListFrame extends JFrame{
                         b = focus.y - evt.getY();
                         x1 = evt.getX();
                         y1 = evt.getY();
+                        w = focus.w;
+                        h = focus.h;
                     }
                 }
                 if(focus != null)
@@ -61,15 +63,15 @@ class ListFrame extends JFrame{
                 if (focus != null)
                 {
                     if(evt.getX() >= focus.x && evt.getX() <= focus.x + 7 && evt.getY() >= focus.y && evt.getY() <= focus.y + 7){
-                        if(x1 - evt.getX() >= 10)
+                        if(x1 - evt.getX() + w >= 10)
                         {
-                            focus.w = x1 - evt.getX();
-                            focus.x = evt.getX();
+                            focus.w = x1 - evt.getX() + w;
+                            focus.x = evt.getX() + a;
                         }
-                        if(y1 - evt.getY() >= 10)
+                        if(y1 - evt.getY() + h >= 10)
                         {
-                            focus.h = y1 - evt.getY();
-                            focus.y = evt.getY();
+                            focus.h = y1 - evt.getY() + h;
+                            focus.y = evt.getY() + b;
                         }
                     }
                     else{
