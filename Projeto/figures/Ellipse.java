@@ -5,13 +5,10 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Ellipse2D.Double;
 
 public class Ellipse extends Figure{
-    private int w, h;
 
     public Ellipse(int x, int y, int w, int h, Color cor_fundo, Color cor_contorno){
         
-        super(x, y, cor_fundo, cor_contorno);
-        this.w = w;
-        this.h = h;     
+        super(x, y, w, h, cor_fundo, cor_contorno);  
     }
 
     public int colision(int mx, int my){

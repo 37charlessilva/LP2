@@ -8,10 +8,13 @@ public abstract class Figure{
     public int x, y;
     public int c = 1; // 
     public Color cor_fundo, cor_contorno;
+    public int w, h;
 
-    public Figure(int x, int y, Color cor_fundo, Color cor_contorno){
+    public Figure(int x, int y, int w, int h, Color cor_fundo, Color cor_contorno){
         this.x = x;
         this.y = y;
+        this.w = h;
+        this.h = w;
         this.cor_fundo = cor_fundo;
         this.cor_contorno = cor_contorno;
     }

@@ -3,13 +3,10 @@ package figures;
 import java.awt.*;
 
 public class Rect extends Figure{
-    private int w, h;
-    
+
     public Rect(int x, int y, int w, int h, Color cor_fundo, Color cor_contorno){
         
-        super(x, y, cor_fundo, cor_contorno);
-        this.w = w;
-        this.h = h;
+        super(x, y, w, h, cor_fundo, cor_contorno);
     }
 
     public int colision(int mx, int my){

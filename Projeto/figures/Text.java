@@ -7,10 +7,10 @@ import java.awt.geom.AffineTransform;
 public class Text extends Figure{
     protected String m;
     protected int textwidth, textheight;
-
-    public Text(String m, int x, int y,Color cor_fundo, Color cor_contorno)
+    
+    public Text(String m, int x, int y, int w, int h, Color cor_fundo, Color cor_contorno)
     {
-        super(x, y, cor_fundo, cor_contorno);
+        super(x, y, w, h, cor_fundo, cor_contorno);
         this.m = m;
     }
 
@@ -46,7 +46,6 @@ public class Text extends Figure{
         Font font = new Font("Arial", Font.PLAIN, 20);
         FontRenderContext frc = new FontRenderContext(new AffineTransform(), true, true);
 
-        
         g.setColor(cor_fundo);
         g.setFont(font);
         textwidth = (int)(font.getStringBounds(m, frc).getWidth());

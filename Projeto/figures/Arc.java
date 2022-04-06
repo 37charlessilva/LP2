@@ -4,13 +4,9 @@ import java.awt.*;
 
 public class Arc extends Figure{
     private int sa, aa;
-    private int w, h;
 
     public Arc(int x, int y, int w, int h, int sa, int aa, Color cor_fundo, Color cor_contorno){
-
-        super(x, y, cor_fundo, cor_contorno);
-        this.w = w;
-        this.h = h;
+        super(x, y, w, h, cor_fundo, cor_contorno);
         this.sa = sa;
         this.aa = aa;
     }

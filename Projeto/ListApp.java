@@ -15,7 +15,7 @@ class ListApp{
 class ListFrame extends JFrame{
     ArrayList<Figure> figs = new ArrayList<Figure>();
     Figure focus = null;
-    int x, y, a, b;
+    int x, y, x1, y1, a, b;
     Color cor_fundo = null, cor_contorno = Color.black;
 
     ListFrame(){
@@ -35,7 +35,9 @@ class ListFrame extends JFrame{
                     if(fig.colision(evt.getX(), evt.getY()) == 1){
                         focus = fig;
                         a = focus.x - evt.getX();
-                        b = focus.y  - evt.getY();
+                        b = focus.y - evt.getY();
+                        x1 = evt.getX();
+                        y1 = evt.getY();
                     }
                 }
                 if(focus != null)
@@ -58,8 +60,22 @@ class ListFrame extends JFrame{
             public void mouseDragged(MouseEvent evt) {
                 if (focus != null)
                 {
-                    focus.x = evt.getX() + a;
-                    focus.y = evt.getY() + b;
+                    if(evt.getX() >= focus.x && evt.getX() <= focus.x + 7 && evt.getY() >= focus.y && evt.getY() <= focus.y + 7){
+                        if(x1 - evt.getX() >= 10)
+                        {
+                            focus.w = x1 - evt.getX();
+                            focus.x = evt.getX();
+                        }
+                        if(y1 - evt.getY() >= 10)
+                        {
+                            focus.h = y1 - evt.getY();
+                            focus.y = evt.getY();
+                        }
+                    }
+                    else{
+                        focus.x = evt.getX() + a;
+                        focus.y = evt.getY() + b;
+                    }
                     repaint();
                 }
             }
@@ -87,7 +103,7 @@ class ListFrame extends JFrame{
                         figs.add(focus);
                     }
                     else if(evt.getKeyChar() == 't'){
-                        focus = (new Text("Hello", x, y, cor_fundo, cor_contorno));
+                        focus = (new Text("Hello", x, y, 0, 0, cor_fundo, cor_contorno));
                         figs.add(focus);
                     }
 
@@ -96,7 +112,7 @@ class ListFrame extends JFrame{
                         figs.remove(focus);
                         focus = null;
                     }
-
+                    
                     // Mover figuras
                     else if(focus != null){
 
@@ -115,7 +131,12 @@ class ListFrame extends JFrame{
                             
                             focus.y += 2;
                         }
-
+                        // Trocar foco com tecla
+                        else if(evt.getKeyChar() == 'f'){
+                            focus = figs.get(0);
+                            figs.add(focus);
+                            figs.remove(focus);
+                        }
                         // Cor de fundo
                         else if(evt.getKeyCode() == KeyEvent.VK_NUMPAD0){
                             focus.cor_fundo = null;
